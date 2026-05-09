@@ -1,3 +1,6 @@
 .env
 */venv
 */node_modules
+*.bin
+*.pyc
+*.sqlite3

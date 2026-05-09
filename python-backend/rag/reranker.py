@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 RERANKER_MODEL = os.getenv("RERANKER_MODEL", "cross-encoder/ms-marco-MiniLM-L-6-v2")
-TOP_K_RERANK = int(os.getenv("TOP_K_RERANK", 3))
+TOP_K_RERANK = int(os.getenv("TOP_K_RERANK", 10))
 
 class Reranker:
     _instance = None

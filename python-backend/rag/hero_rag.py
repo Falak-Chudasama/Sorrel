@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 TOP_K_RETRIEVAL = int(os.getenv("TOP_K_RETRIEVAL", 10))
-TOP_K_RERANK = int(os.getenv("TOP_K_RERANK", 3))
+TOP_K_RERANK = int(os.getenv("TOP_K_RERANK", 10))
 
 class HeroRAG:
     def __init__(self):

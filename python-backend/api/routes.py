@@ -41,7 +41,8 @@ async def chat(request: ChatRequest):
             sources=[SourceCitation(**s) for s in sources]
         )
     except Exception as e:
-        logger.error(f"Chat error: {e}")
+        # logger.exception prints the EXACT line number and full trace of the error
+        logger.exception("CRITICAL ERROR in /chat route:") 
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/ingest", response_model=IngestResponse)
@@ -50,7 +51,7 @@ async def ingest():
         run_ingestion()
         return IngestResponse(status="success", message="Ingestion completed successfully.")
     except Exception as e:
-        logger.error(f"Ingestion error: {e}")
+        logger.exception("CRITICAL ERROR in /ingest route:")
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.delete("/session/{session_id}")

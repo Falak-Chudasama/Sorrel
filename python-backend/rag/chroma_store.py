@@ -61,9 +61,14 @@ class ChromaStore:
             metadata={"hnsw:space": "cosine"}
         )
         
+        # FIX: Check if database is empty first
+        count = collection.count()
+        if count == 0:
+            return []
+        
         results = collection.query(
             query_embeddings=[query_embedding],
-            n_results=min(top_k, collection.count()),
+            n_results=min(top_k, count),
             include=["documents", "metadatas", "distances"]
         )
         

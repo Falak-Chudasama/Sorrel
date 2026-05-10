@@ -14,9 +14,6 @@ export default function App() {
 					</div>
 					<h1 className="text-lg font-semibold tracking-wide text-zinc-100">Sorrel</h1>
 				</div>
-				<div className="text-[11px] uppercase tracking-wider font-semibold text-zinc-400 border border-zinc-800 px-3 py-1.5 rounded-full bg-zinc-900">
-					Academic Database
-				</div>
 			</header>
 
 			{error && (

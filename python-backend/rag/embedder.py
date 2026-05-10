@@ -1,12 +1,16 @@
 import os
 import logging
+
+os.environ["HF_HUB_OFFLINE"] = "1"
+os.environ["TRANSFORMERS_OFFLINE"] = "1"
+
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 
 load_dotenv()
 logger = logging.getLogger(__name__)
 
-EMBED_MODEL = os.getenv("EMBED_MODEL", "BAAI/bge-large-en-v1.5")
+EMBED_MODEL = os.getenv("EMBED_MODEL", "./local_models/bge-large-en-v1.5")
 QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
 
 class Embedder:
@@ -15,7 +19,7 @@ class Embedder:
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super().__new__(cls)
-            logger.info(f"Loading local embedding model into memory: {EMBED_MODEL}...")
+            logger.info(f"Loading local embedding model into memory from: {EMBED_MODEL}")
             cls._instance.model = SentenceTransformer(EMBED_MODEL)
             logger.info("Local embedding model loaded successfully.")
         return cls._instance
